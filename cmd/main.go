@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	ginblog "gin-blog/internal"
 	g "gin-blog/internal/global"
 	"gin-blog/internal/middleware"
@@ -37,6 +38,7 @@ func main() {
 	r.Use(middleware.WithRedisDB(rdb))
 	r.Use(middleware.WithCookieStore(conf.Session.Name, conf.Session.Salt))
 	ginblog.RegisterHandlers(r)
+	fmt.Println("1234")
 
 	// 使用本地文件上传, 需要静态文件服务, 使用七牛云不需要
 	if conf.Upload.OssType == "local" {
